@@ -10,22 +10,5 @@
 
 @implementation MargitGame
 
-- (void) step
-{
-  game.step ();
-}
-
-- (void) render
-{
-  game.render ();
-}
-
-- (void) punt
-{
-  game.punt ();
-}
-
-- (void) snap { game.snap (); }
-- (void) unsnap { game.unsnap (); }
 
 @end

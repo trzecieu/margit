@@ -11,8 +11,6 @@
 #import "MargitGame.h"
 
 @interface MargitOpenGLView : NSOpenGLView {
-  MargitGame* game;
-  
   CVDisplayLinkRef displayLink;
 }
 

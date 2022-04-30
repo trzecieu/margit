@@ -2,11 +2,6 @@
 
 @implementation MargitOpenGLView
 
-- (MargitGame*) game
-{
-  return game;
-}
-
 // Callback for the CoreVideo display link that's set up in prepareOpenGL.
 static CVReturn
 display_link_cb (CVDisplayLinkRef displayLink,
@@ -29,12 +24,9 @@ display_link_cb (CVDisplayLinkRef displayLink,
   // Set up a CoreVideo display link to drive the redraw loop perfectly.
   CVDisplayLinkCreateWithActiveCGDisplays (&displayLink);
   CVDisplayLinkSetOutputCallback (displayLink, display_link_cb, self);
-  CGLContextObj cglContext =
-    (CGLContextObj) [[self openGLContext] CGLContextObj];
-  CGLPixelFormatObj cglPixelFormat =
-    (CGLPixelFormatObj) [[self pixelFormat] CGLPixelFormatObj];
-  CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext
-    (displayLink, cglContext, cglPixelFormat);
+  CGLContextObj cglContext =  (CGLContextObj) [[self openGLContext] CGLContextObj];
+  CGLPixelFormatObj cglPixelFormat = (CGLPixelFormatObj) [[self pixelFormat] CGLPixelFormatObj];
+  CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(displayLink, cglContext, cglPixelFormat);
   
   // Start the redraw loop.
   CVDisplayLinkStart (displayLink);
@@ -48,17 +40,6 @@ display_link_cb (CVDisplayLinkRef displayLink,
 
 - (CVReturn) getFrameForTime: (const CVTimeStamp *) outputTime
 {
-  if (!game)
-    // Kind of stupid place to do this.
-    game = [[MargitGame alloc] init];
-  
-  [[self openGLContext] makeCurrentContext];
-  
-  [game step];
-  [game render];
-  
-  [[self openGLContext] flushBuffer];
-  
   return kCVReturnSuccess;
 }
 

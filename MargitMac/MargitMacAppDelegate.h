@@ -10,8 +10,4 @@
 @property (assign) IBOutlet NSWindow* window;
 @property (assign) IBOutlet MargitOpenGLView* openGLView;
 
-- (IBAction) onPunt: (id) sender;
-- (IBAction) onSnap: (id) sender;
-- (IBAction) onUnsnap: (id) sender;
-
 @end
